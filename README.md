@@ -75,3 +75,33 @@ A self-service platform for spinning up isolated temporary environments with aut
 - Single VM only - no multi-host support
 - No persistent storage for app containers
 - Stress mode requires stress-ng installed in container
+
+## Quick Local Test
+```bash
+# Clone and run (from any machine)
+git clone https://github.com/Ada-Mazi/devops-sandbox
+cd devops-sandbox
+pip3 install flask requests
+docker build -t sandbox-app:latest app/
+make up
+bash platform/create_env.sh test 300
+make health
+make simulate ENV=env-xxx MODE=crash
+sleep 35
+make health
+make down
+
+## Quick Local Test
+```bash
+# Clone and run (from any machine)
+git clone https://github.com/Ada-Mazi/devops-sandbox
+cd devops-sandbox
+pip3 install flask requests
+docker build -t sandbox-app:latest app/
+make up
+bash platform/create_env.sh test 300
+make health
+make simulate ENV=env-xxx MODE=crash
+sleep 35
+make health
+make down
